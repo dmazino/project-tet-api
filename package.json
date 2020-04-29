@@ -1,27 +1,22 @@
 {
   "name": "project-tet-api",
-  "version": "1.0.0",
-  "description": "Simple home express server",
+  "version": "0.0.1",
+  "private": true,
+  "description": "New Swagger API Project",
+  "keywords": [],
+  "author": "",
+  "license": "",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dmazino/project-tet-api.git"
-  },
-  "keywords": [
-    "home",
-    "server"
-  ],
-  "author": "Dadamuga Mazino",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dmazino/project-tet-api/issues"
-  },
-  "homepage": "https://github.com/dmazino/project-tet-api#readme",
   "dependencies": {
-    "axios": "^0.19.2",
-    "express": "^4.17.1"
+    "express": "^4.12.3",
+    "swagger-express-mw": "^0.1.0"
+  },
+  "devDependencies": {
+    "should": "^7.1.0",
+    "supertest": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "swagger project test"
   }
 }

@@ -1,28 +1,23 @@
-const express = require('express')
-const app = express()
-const axios = require('axios')
+'use strict';
 
-app.get('/', function (req, res) {
+var SwaggerExpress = require('swagger-express-mw');
+var app = require('express')();
+module.exports = app; // for testing
 
-    let blob = {
-        name: 'Dadamuga Mazino',
-        age: 18, location: 'Nazareth',
-        message: "Hey there I'm running express server!"
-    }
+var config = {
+  appRoot: __dirname // required config
+};
 
-    axios.get('https://api.synthcity.io/synthcity/v1/stats')
-        .then(function (response) {
-            // handle success
-            console.log(response.data)
+SwaggerExpress.create(config, function(err, swaggerExpress) {
+  if (err) { throw err; }
 
-            res.send({...response.data, ...blob});
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error)
-            res.send('something went wrong');
-        })
+  // install middleware
+  swaggerExpress.register(app);
 
+  var port = process.env.PORT || 10010;
+  app.listen(port);
+
+  if (swaggerExpress.runner.swagger.paths['/hello']) {
+    console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
+  }
 });
-
-app.listen(3000)
