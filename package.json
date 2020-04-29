@@ -1,0 +1,26 @@
+{
+  "name": "project-tet-api",
+  "version": "1.0.0",
+  "description": "Simple home express server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmazino/project-tet-api.git"
+  },
+  "keywords": [
+    "home",
+    "server"
+  ],
+  "author": "Dadamuga Mazino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmazino/project-tet-api/issues"
+  },
+  "homepage": "https://github.com/dmazino/project-tet-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
