@@ -2,6 +2,7 @@
 
 var SwaggerExpress = require('swagger-express-mw');
 var app = require('express')();
+const bluetooth = require('./bluetooth');
 module.exports = app; // for testing
 
 var config = {
@@ -11,6 +12,9 @@ var config = {
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
 
+
+  bluetooth.init();
+
   // install middleware
   swaggerExpress.register(app);
 
@@ -19,5 +23,9 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
 
   if (swaggerExpress.runner.swagger.paths['/hello']) {
     console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');
+  }
+
+  if(swaggerExpress.runner.swagger.paths['/lights/on']){
+    // bluetooth.();
   }
 });
