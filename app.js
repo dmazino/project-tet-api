@@ -12,8 +12,9 @@ var config = {
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
 
-
+  /* IOT STUFF */
   bluetooth.init();
+  // bluetooth.turnOffLEDs();
 
   // install middleware
   swaggerExpress.register(app);
@@ -26,6 +27,10 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   }
 
   if(swaggerExpress.runner.swagger.paths['/lights/on']){
-    // bluetooth.();
+    console.log('try this:\ncurl http://127.0.0.1:' + port + '/lights/on');
+  }
+
+  if(swaggerExpress.runner.swagger.paths['/lights/off']){
+    console.log('try this:\ncurl http://127.0.0.1:' + port + '/lights/off');
   }
 });

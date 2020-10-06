@@ -42,6 +42,40 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /lights/on:
+    x-swagger-router-controller: hello_world
+    get:
+      description: Turns on lights
+      # used as the method name of the controller
+      operationId: lightOn
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /lights/off:
+    x-swagger-router-controller: hello_world
+    get:
+      description: Turns on lights
+      # used as the method name of the controller
+      operationId: lightOff
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions

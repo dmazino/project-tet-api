@@ -3,12 +3,15 @@ var cron = require('node-cron');
 
 // create bluetooth device instance
 const device = new bluetooth.DeviceINQ();
+let conn = null;
 
 const turnOnLEDs = function (connection) {
+    if(!connection) connection = conn;
     connection.write(new Buffer('1', 'utf-8'), () => { console.log('Turning on LEDs') });
 }
 
 const turnOffLEDs = function (connection) {
+    if(!connection) connection = conn;
     connection.write(new Buffer('0', 'utf-8'), () => { console.log('Turning off LEDs') });
 }
 
@@ -25,6 +28,8 @@ const init = function(){
                 bluetooth.connect(address, channel, function (err, connection) {
                     console.log('Connecting to Desklights...');
                     if (err) return console.error(err);
+
+                    conn = connection;
 
                     connection.on('data', (buffer) => {
                         console.log(buffer.toString());
