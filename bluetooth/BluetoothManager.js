@@ -4,14 +4,23 @@ var cron = require('node-cron');
 // create bluetooth device instance
 const device = new bluetooth.DeviceINQ();
 let conn = null;
+let isOn;
 
-const turnOnLEDs = function (connection) {
-    if (!connection) connection = conn;
+const turnOnLEDs = (connection) => {
+    if (!connection) { connection = conn; }
+
+    isOn = true;
     connection.write(new Buffer('1', 'utf-8'), () => { console.log('Turning on LEDs') });
 }
 
-const turnOffLEDs = function (connection) {
-    if (!connection) connection = conn;
+const getStatus = () => {
+    return isOn;
+}
+
+const turnOffLEDs = (connection) => {
+    if (!connection) { connection = conn; }
+
+    isOn = false;
     connection.write(new Buffer('0', 'utf-8'), () => { console.log('Turning off LEDs') });
 }
 
@@ -54,4 +63,4 @@ const init = function () {
 
 }
 
-module.exports = { init, turnOnLEDs, turnOffLEDs }
+module.exports = { init, turnOnLEDs, turnOffLEDs, getStatus }

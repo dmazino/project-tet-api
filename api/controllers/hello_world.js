@@ -5,7 +5,8 @@ const bluetooth = require('../../bluetooth');
 module.exports = {
   hello: hello,
   lightOn,
-  lightOff
+  lightOff,
+  lightStatus
 };
 
 /*
@@ -23,12 +24,16 @@ function hello(req, res) {
   res.json(hello);
 }
 
-function lightOn(req,res){
+function lightOn(req, res) {
   bluetooth.turnOnLEDs();
   res.json('Turned on');
 }
 
-function lightOff(req,res){
+function lightOff(req, res) {
   bluetooth.turnOffLEDs();
   res.json('Turned off');
+}
+
+function lightStatus(req, res) {
+  res.json(bluetooth.getStatus());
 }

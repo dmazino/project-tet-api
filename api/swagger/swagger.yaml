@@ -76,6 +76,23 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /lights/status:
+    x-swagger-router-controller: hello_world
+    get:
+      description: Checks Light Status
+      # used as the method name of the controller
+      operationId: lightStatus
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
