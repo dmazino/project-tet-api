@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "node app.js",
+    "deploy": "ngrok http -hostname=zeenotheinventor.ngrok.io 10010",
     "test": "swagger project test"
   }
 }
