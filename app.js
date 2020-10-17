@@ -3,6 +3,7 @@
 var SwaggerExpress = require('swagger-express-mw');
 var app = require('express')();
 const bluetooth = require('./bluetooth');
+const websocket = require('./websocket');
 module.exports = app; // for testing
 
 var config = {
@@ -25,7 +26,9 @@ SwaggerExpress.create(config, async function (err, swaggerExpress) {
   swaggerExpress.register(app);
 
   var port = process.env.PORT || 10010;
-  app.listen(port);
+  const httpServer = app.listen(port);
+
+  websocket.init(httpServer);
 
   if (swaggerExpress.runner.swagger.paths['/lights/on']) {
     console.log('LET THERE BE LIGHT!: curl http://127.0.0.1:' + port + '/lights/on');
