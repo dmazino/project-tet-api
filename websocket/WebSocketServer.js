@@ -27,7 +27,7 @@ const init = function (server) {
         return true;
     }
 
-    const connections = new Set();;
+    const connections = new Set();
     wsServer.on('request', function (request) {
         if (!originIsAllowed(request.origin)) {
             // Make sure we only accept requests from an allowed origin
