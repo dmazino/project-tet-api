@@ -1,5 +1,20 @@
 var WebSocketServer = require('websocket').server;
 
+
+const connections = new Set();
+
+const states = { LIGHT_ON: 0b1, LIGHT_OFF: 0b0 };
+const masks = { LIGHT: 0b1 }
+
+const updateState = function (newState) {
+    // sync all machines listening to this socket
+    connections.forEach((conn) => {
+
+        const buffer = Buffer.alloc(1, newState);
+        conn.sendBytes(buffer);
+    });
+}
+
 const init = function (server) {
     wsServer = new WebSocketServer({
         httpServer: server,
@@ -16,7 +31,6 @@ const init = function (server) {
         return true;
     }
 
-    const connections = new Set();
     wsServer.on('request', function (request) {
         if (!originIsAllowed(request.origin)) {
             // Make sure we only accept requests from an allowed origin
@@ -41,9 +55,10 @@ const init = function (server) {
             else if (message.type === 'binary') {
                 console.log('Received Binary Message of ' + message.binaryData.length + ' bytes with value: ' + (message.binaryData[0] >>> 0).toString(2));
 
+                // sync all machines listening to this socket
                 connections.forEach((conn) => {
                     conn.sendBytes(message.binaryData);
-                })
+                });
             }
         });
         connection.on('close', function (reasonCode, description) {
@@ -53,4 +68,4 @@ const init = function (server) {
     });
 }
 
-module.exports = { init };
+module.exports = { init, states, masks, updateState };

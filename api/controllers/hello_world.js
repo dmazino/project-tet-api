@@ -1,6 +1,7 @@
 'use strict';
 var util = require('util');
 const bluetooth = require('../../bluetooth');
+const websocket = require('../../websocket');
 
 module.exports = {
   hello: hello,
@@ -26,11 +27,13 @@ function hello(req, res) {
 
 function lightOn(req, res) {
   bluetooth.turnOnLEDs();
+  websocket.updateState(websocket.states.LIGHT_ON);
   res.json('Turned on');
 }
 
 function lightOff(req, res) {
   bluetooth.turnOffLEDs();
+  websocket.updateState(websocket.states.LIGHT_OFF);
   res.json('Turned off');
 }
 
