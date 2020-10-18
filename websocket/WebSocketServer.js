@@ -42,11 +42,11 @@ const init = function (server) {
         // keep track of connections
         var connection = request.accept('echo-protocol', request.origin);
         connections.add(connection);
-        console.log((new Date()) + ' Connection accepted.');
+        console.log((new Date()) + ' | ' + connection.remoteAddress + " | " + request.origin + ' | Connection accepted.');
 
         connection.on('message', function (message) {
             if (message.type === 'utf8') {
-                console.log('Received Message: ' + message.utf8Data);
+                console.log('Received Message: from ' + connection.remoteAddress + " | " + request.origin + ' | ' + message.utf8Data);
 
                 connections.forEach((conn) => {
                     conn.sendUTF(message.utf8Data);
