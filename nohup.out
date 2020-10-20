@@ -1,0 +1,12 @@
+Initializing bluetooth devices...
+Found: 98:D3:91:FD:40:FF with name HC-05
+device found
+Found RFCOMM channel for serial port on HC-05:  1
+Connecting to Desklights...
+
+##############################
+######### Connected! #########
+##############################
+LET THERE BE LIGHT!: curl http://127.0.0.1:10010/lights/on
+Turning off LEDs
+Turning on LEDs

@@ -1,5 +1,6 @@
 const bluetooth = require('node-bluetooth');
-var cron = require('node-cron');
+const cron = require('node-cron');
+const websocket = require('../websocket');
 
 // create bluetooth device instance
 const device = new bluetooth.DeviceINQ();
@@ -11,6 +12,7 @@ const turnOnLEDs = (connection) => {
 
     isOn = true;
     connection.write(new Buffer('1', 'utf-8'), () => { console.log('Turning on LEDs') });
+    websocket.updateState(websocket.states.LIGHT_ON);
 }
 
 const getStatus = () => {
@@ -22,6 +24,7 @@ const turnOffLEDs = (connection) => {
 
     isOn = false;
     connection.write(new Buffer('0', 'utf-8'), () => { console.log('Turning off LEDs') });
+    websocket.updateState(websocket.states.LIGHT_OFF);
 }
 
 const init = function () {

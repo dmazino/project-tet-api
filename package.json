@@ -20,8 +20,8 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "start": "node app.js",
-    "deploy": "ngrok http -hostname=zeenotheinventor.ngrok.io 10010",
+    "start": "nohup node app.js",
+    "deploy": "nohup ngrok http -hostname=zeenotheinventor.ngrok.io 10010",
     "test": "swagger project test"
   }
 }
