@@ -29,9 +29,10 @@
     "build": "tsc && npm run copy:assets",
     "copy:assets": "mkdir -p ./dist/api/swagger && cp ./api/swagger/swagger.yaml ./dist/api/swagger/swagger.yaml",
     "start": "npm run build && node dist/app.js",
-    "start:prod": "tsc && nohup node dist/app.js",
-    "deploy": "ngrok http -hostname=zeenotheinventor.ngrok.io 10010",
-    "deploy:prod": "nohup ngrok http -hostname=zeenotheinventor.ngrok.io 10010",
+    "deploy": "concurrently \"npm run start:prod\" \"npm run tunnel:prod\"",
+    "start:prod": "npm run build && nohup node dist/app.js",
+    "tunnel": "ngrok http -hostname=zeenotheinventor.ngrok.io 10010",
+    "tunnel:prod": "nohup ngrok http -hostname=zeenotheinventor.ngrok.io 10010",
     "test": "swagger project test"
   }
 }
