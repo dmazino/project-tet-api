@@ -1,8 +1,8 @@
 'use strict';
 
-var SwaggerExpress = require('swagger-express-mw');
+import SwaggerExpress from 'swagger-express-mw';
 var app = require('express')();
-const bluetooth = require('./bluetooth');
+import bluetooth from './bluetooth';
 const websocket = require('./websocket');
 module.exports = app; // for testing
 
