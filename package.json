@@ -1,26 +1,27 @@
 {
   "name": "project-tet-api",
-  "version": "1.0.0",
-  "description": "Simple home express server",
+  "version": "0.0.1",
+  "private": true,
+  "description": "New Swagger API Project",
+  "keywords": [],
+  "author": "",
+  "license": "",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dmazino/project-tet-api.git"
-  },
-  "keywords": [
-    "home",
-    "server"
-  ],
-  "author": "Dadamuga Mazino",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dmazino/project-tet-api/issues"
-  },
-  "homepage": "https://github.com/dmazino/project-tet-api#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.12.3",
+    "node-bluetooth": "^1.2.6",
+    "node-cron": "^2.0.3",
+    "swagger-express-mw": "^0.1.0",
+    "websocket": "^1.0.32"
+  },
+  "devDependencies": {
+    "should": "^7.1.0",
+    "supertest": "^1.0.0",
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nohup node app.js",
+    "deploy": "nohup ngrok http -hostname=zeenotheinventor.ngrok.io 10010",
+    "test": "swagger project test"
   }
 }
