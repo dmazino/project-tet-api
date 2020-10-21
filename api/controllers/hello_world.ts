@@ -1,6 +1,6 @@
 "use strict";
 var util = require("util");
-const bluetooth = require("../../bluetooth");
+import bluetooth from "../../bluetooth";
 
 module.exports = {
   hello: hello,

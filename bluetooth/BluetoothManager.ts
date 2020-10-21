@@ -4,9 +4,9 @@ const websocket = require("../websocket");
 
 const device = new bluetooth.DeviceINQ();
 let conn = null;
-let isOn = false;
+let isOn;
 
-export const turnOnLEDs = function (connection) {
+export const turnOnLEDs = (connection) => {
   if (!connection) {
     connection = conn;
   }
@@ -18,11 +18,11 @@ export const turnOnLEDs = function (connection) {
   websocket.updateState(websocket.states.LIGHT_ON);
 };
 
-export const getStatus = function (): boolean {
+const getStatus = (): boolean => {
   return isOn;
 };
 
-export const turnOffLEDs = function (connection) {
+export const turnOffLEDs = (connection) => {
   if (!connection) {
     connection = conn;
   }
@@ -74,8 +74,8 @@ export const init = function () {
 };
 
 interface BluetoothManagerType {
-  turnOnLEDs: (connection: any) => void;
-  turnOffLEDs: (connection: any) => void;
+  turnOnLEDs: (connection?: any) => void;
+  turnOffLEDs: (connection?: any) => void;
   init: () => void;
   getStatus: () => boolean;
 }
