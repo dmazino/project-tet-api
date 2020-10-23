@@ -1,12 +1,12 @@
-'use strict';
-var util = require('util');
-const bluetooth = require('../../bluetooth');
+"use strict";
+var util = require("util");
+import bluetooth from "../../bluetooth";
 
 module.exports = {
   hello: hello,
   lightOn,
   lightOff,
-  lightStatus
+  lightStatus,
 };
 
 /*
@@ -17,8 +17,8 @@ module.exports = {
  */
 function hello(req, res) {
   // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
-  var name = req.swagger.params.name.value || 'stranger';
-  var hello = util.format('Hello, %s!', name);
+  var name = req.swagger.params.name.value || "stranger";
+  var hello = util.format("Hello, %s!", name);
 
   // this sends back a JSON response which is a single string
   res.json(hello);
@@ -26,12 +26,12 @@ function hello(req, res) {
 
 function lightOn(req, res) {
   bluetooth.turnOnLEDs();
-  res.json('Turned on');
+  res.json("Turned on");
 }
 
 function lightOff(req, res) {
   bluetooth.turnOffLEDs();
-  res.json('Turned off');
+  res.json("Turned off");
 }
 
 function lightStatus(req, res) {
