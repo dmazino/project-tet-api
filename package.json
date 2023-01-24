@@ -11,12 +11,12 @@
     "express": "^4.12.3",
     "node-bluetooth": "^1.2.6",
     "node-cron": "^2.0.3",
-    "swagger-express-mw": "^0.1.0",
+    "swagger-express-mw": "^0.7.0",
     "websocket": "^1.0.32"
   },
   "devDependencies": {
     "should": "^7.1.0",
-    "supertest": "^1.0.0",
+    "supertest": "^6.3.3",
     "nodemon": "^2.0.4"
   },
   "scripts": {
